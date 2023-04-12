@@ -23,14 +23,6 @@ export function DisplayArtwork(props) {
       });
   }, [props.artStyle]);
 
-  if (!artworkArr) {
-    return (
-      <div className="frame">
-        <Img src={"https://picsum.photos/600/400"} />
-      </div>
-    );
-  }
-
   if (loading) {
     return "Loading!";
   }
