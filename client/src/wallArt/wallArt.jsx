@@ -24,7 +24,15 @@ export function DisplayArtwork(props) {
   }, [props.artStyle]);
 
   if (loading) {
-    return "Loading!";
+    return (
+      <div className="frame" onClick={handleClick}>
+        <Img
+          src={
+            "https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=acecdf5bd8wvit3kvkfoc1zgg2xi0h7g5hi51sl9j0w3m5yd&rid=giphy.gif&ct=g"
+          }
+        />
+      </div>
+    );
   }
 
   return (
@@ -94,11 +102,11 @@ export function SelectStyle(props) {
         </button>
         <button
           onClick={() => {
-            props.setArtStyle("/romanticism");
-            setSelectedDropdown("Romanticism");
+            props.setArtStyle("/modern");
+            setSelectedDropdown("Modern");
           }}
         >
-          Romanticism
+          Modern
         </button>
         <button
           onClick={() => {
