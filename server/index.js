@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 require("dotenv").config();
 
-const callApi = (style) => {
+const callArtApi = (style) => {
   let imageIdArr = [];
   return axios
     .get(`https://api.artic.edu/api/v1/artworks/search?q=${style}&limit=20`)
@@ -28,41 +28,41 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/default_art", async (req, res) => {
-  let defaultArtArray = await callApi("new");
+  let defaultArtArray = await callArtApi("monet");
   res.json({ idArr: defaultArtArray });
 });
 
 app.get("/pop_art", async (req, res) => {
-  let popArtArray = await callApi("pop art");
+  let popArtArray = await callArtApi("pop art");
   res.json({
     idArr: popArtArray,
   });
 });
 
 app.get("/surrealism", async (req, res) => {
-  let surrealismArray = await callApi("surrealism");
+  let surrealismArray = await callArtApi("surrealism");
   res.json({
     idArr: surrealismArray,
   });
 });
 
 app.get("/impressionism", async (req, res) => {
-  let impressionismArray = await callApi("impressionism");
+  let impressionismArray = await callArtApi("impressionism");
   res.json({
     idArr: impressionismArray,
   });
 });
 
-app.get("/romanticism", async (req, res) => {
-  let romanticismArray = await callApi("romanticism");
+app.get("/modern", async (req, res) => {
+  let modernArray = await callArtApi("modern");
   res.json({
-    idArr: ["badimage", ...romanticismArray],
+    idArr: ["badimage", ...modernArray],
   });
 });
 
 app.get("/expressionism", async (req, res) => {
   try {
-    let expressionismArray = await callApi("expressionism");
+    let expressionismArray = await callArtApi("expressionism");
     res.json({
       idArr: expressionismArray,
     });
@@ -72,7 +72,7 @@ app.get("/expressionism", async (req, res) => {
 });
 
 app.get("/rococo", async (req, res) => {
-  let rococoArray = await callApi("rococo");
+  let rococoArray = await callArtApi("rococo");
   res.json({
     idArr: rococoArray,
   });
@@ -125,4 +125,25 @@ app.get("/paris", async (req, res) => {
 app.get("/default", async (req, res) => {
   let currentWeather = await callWeatherApi("melbourne");
   res.json(currentWeather);
+});
+
+const gifApiKey = process.env.giphyKey;
+
+const callGifApi = () => {
+  return axios
+    .get(
+      `https://api.giphy.com/v1/gifs/search?api_key=${gifApiKey}&q=funny&limit=20`
+    )
+    .then(async (res) => {
+      let gif = await res;
+      return gif.data.data;
+    })
+    .catch((err) => {
+      console.log("Error: ", err.message);
+    });
+};
+
+app.get("/tv", async (req, res) => {
+  let tvImages = await callGifApi();
+  res.json(tvImages);
 });
