@@ -23,10 +23,6 @@ const callArtApi = (style) => {
     });
 };
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
-
 app.get("/default_art", async (req, res) => {
   let defaultArtArray = await callArtApi("monet");
   res.json({ idArr: defaultArtArray });
