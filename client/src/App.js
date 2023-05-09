@@ -7,28 +7,39 @@ import { DisplayTV } from "./TV/tv";
 import "./App.css";
 
 function App() {
-  const [data, setData] = React.useState(null);
   const [artStyle, setArtStyle] = React.useState("/default_art");
   const [cityWeather, setCityWeather] = React.useState("melbourne");
   const [cityTime, setCityTime] = React.useState("Australia/Melbourne");
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
   return (
-    <div>
-      <header>
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
-      <DisplayArtwork artStyle={artStyle} />
-      <SelectStyle setArtStyle={setArtStyle} />
-      <DisplayWeather cityWeather={cityWeather} />
-      <SelectCity setCityWeather={setCityWeather} setCityTime={setCityTime} />
-      <DisplayTime cityTime={cityTime} />
-      <DisplayTV />
+    <div className="mainbox">
+      <div className="body">
+        <section>
+          <div className="art_content">
+            <DisplayArtwork artStyle={artStyle} />
+            <p className="click">Click painting to change</p>
+            <SelectStyle setArtStyle={setArtStyle} />
+          </div>
+        </section>
+        <section>
+          <DisplayTV />
+        </section>
+        <section>
+          <div className="section_content">
+            <DisplayWeather cityWeather={cityWeather} />
+            <SelectCity
+              setCityWeather={setCityWeather}
+              setCityTime={setCityTime}
+            />
+          </div>
+        </section>
+        <section>
+          <div className="section_content">
+            <DisplayTime cityTime={cityTime} />
+          </div>
+        </section>
+      </div>
+      <footer></footer>
     </div>
   );
 }

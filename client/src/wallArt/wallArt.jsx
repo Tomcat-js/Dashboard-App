@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 export function DisplayArtwork(props) {
   const [artworkArr, setArtworkArr] = React.useState(null);
@@ -73,9 +74,9 @@ export function SelectStyle(props) {
   const [selectedDropdown, setSelectedDropdown] =
     React.useState("Choose a style");
   return (
-    <div className="dropdown">
-      <button className="dropbtn">{selectedDropdown}</button>
-      <div className="dropdown-content">
+    <div className="dropdown-art">
+      <button className="dropbtn-art">{selectedDropdown}</button>
+      <div className="dropdown-content-art">
         <button
           onClick={() => {
             props.setArtStyle("/surrealism");

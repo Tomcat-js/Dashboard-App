@@ -29,11 +29,31 @@ export function DisplayTV() {
   }, []);
 
   return (
-    <div onClick={handleClick}>
-      <img
-        src={channelArr[channelIdx].images.original.url}
-        alt={"TV screen"}
-      ></img>
+    <div className="section_content">
+      <div className="television">
+        <div className="television__top">
+          <div className="television__antenna television__antenna--left"></div>
+          <div className="television__antenna television__antenna--right"></div>
+          <div className="television__antenna__base"></div>
+        </div>
+        <div className="television__center">
+          <div className="television__screen">
+            <div onClick={handleClick}>
+              <img
+                className="tv"
+                src={channelArr[channelIdx].images.original.url}
+                alt={"TV screen"}
+              ></img>
+            </div>
+          </div>
+          <div className="television__channels-wrapper"></div>
+        </div>
+        <div className="television__base">
+          <div className="television__foot television__foot--left"></div>
+          <div className="television__foot television__foot--right"></div>
+        </div>
+        <p className="click">Click screen to change channel</p>
+      </div>
     </div>
   );
 }

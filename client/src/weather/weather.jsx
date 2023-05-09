@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 export function DisplayWeather(props) {
   const [weather, setWeather] = React.useState({
@@ -19,11 +20,22 @@ export function DisplayWeather(props) {
   }, [props.cityWeather]);
 
   return (
-    <div>
-      <p>{weather.location.name}</p>
-      <p>{weather.current.temp_c}</p>
-      <p>{weather.current.condition.text}</p>
+    <div className="weather_content">
+      <WeatherLocation>{weather.location.name}</WeatherLocation>
+      <WeatherConditions>
+        <p>Temperature: {weather.current.temp_c}</p>
+        <p>Condition: {weather.current.condition.text}</p>
+      </WeatherConditions>
       <img src={weather.current.condition.icon} alt="Current Weather"></img>
     </div>
   );
 }
+
+const WeatherLocation = styled.h1`
+  color: black;
+  font-family: "Instrument+Serif", sans-serif;
+`;
+
+const WeatherConditions = styled.h3`
+  font-family: "Oswald", sans-serif;
+`;
