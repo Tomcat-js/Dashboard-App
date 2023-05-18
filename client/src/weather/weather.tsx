@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export function DisplayWeather(props) {
+type weatherProps = {
+  cityWeather: string;
+};
+
+export function DisplayWeather(props: weatherProps) {
   const [weather, setWeather] = React.useState({
     location: { name: "Loading weather" },
     current: {

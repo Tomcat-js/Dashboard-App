@@ -1,6 +1,11 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
-export function SelectCity(props) {
+type cityProps = {
+  setCityWeather: Function;
+  setCityTime: Function;
+};
+
+export function SelectCity(props: cityProps): ReactElement {
   const [selectedCity, setSelectedCity] = React.useState("Choose a city");
 
   return (

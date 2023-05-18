@@ -126,9 +126,10 @@ app.get("/default", async (req, res) => {
 const gifApiKey = process.env.giphyKey;
 
 const callGifApi = () => {
+  const randomOffset = Math.floor(Math.random() * 100);
   return axios
     .get(
-      `https://api.giphy.com/v1/gifs/search?api_key=${gifApiKey}&q=funny&limit=20`
+      `https://api.giphy.com/v1/gifs/search?api_key=${gifApiKey}&q=funny&offset=${randomOffset}&limit=20`
     )
     .then(async (res) => {
       let gif = await res;

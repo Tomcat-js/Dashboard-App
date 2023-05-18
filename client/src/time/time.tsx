@@ -1,8 +1,15 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 
-export function DisplayTime(props) {
-  const [timeAndDate, setTimeAndDate] = React.useState({});
+type timeProps = {
+  cityTime: string;
+};
+
+export function DisplayTime(props: timeProps): ReactElement {
+  const [timeAndDate, setTimeAndDate] = React.useState<{
+    time: string;
+    dateToday: string;
+  }>({ time: "loading", dateToday: "loading" });
 
   React.useEffect(() => {
     const interval = setInterval(() => {
