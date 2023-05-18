@@ -1,9 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 
-export function DisplayArtwork(props) {
-  const [artworkArr, setArtworkArr] = React.useState(null);
-  const [imageIdx, setImageIdx] = React.useState(0);
+type artProps = {
+  artStyle: string;
+};
+
+export function DisplayArtwork(props: artProps) {
+  const [artworkArr, setArtworkArr] = React.useState([]);
+  const [imageIdx, setImageIdx] = React.useState(
+    Math.floor(Math.random() * 20)
+  );
   const [loading, setLoading] = React.useState(true);
 
   const handleClick = () => {
@@ -46,8 +51,14 @@ export function DisplayArtwork(props) {
   );
 }
 
-function Img(props) {
-  const [imageSrc, setImageSrc] = React.useState(null);
+type imgProps = {
+  src: string;
+  onError?: Function;
+  handleClick?: Function;
+};
+
+function Img(props: imgProps) {
+  const [imageSrc, setImageSrc] = React.useState("");
 
   React.useEffect(() => {
     const img = new Image();
@@ -55,22 +66,28 @@ function Img(props) {
       setImageSrc(props.src);
     };
     img.onerror = () => {
-      props.onError();
+      if (props.onError) {
+        props.onError();
+      }
     };
     img.src = props.src;
-  }, [props.src]);
+  });
 
   return (
     <img
       className="picture"
       src={imageSrc}
       alt="art"
-      onClick={props.handleClick}
+      onClick={() => props.handleClick}
     ></img>
   );
 }
 
-export function SelectStyle(props) {
+type styleProps = {
+  setArtStyle: Function;
+};
+
+export function SelectStyle(props: styleProps) {
   const [selectedDropdown, setSelectedDropdown] =
     React.useState("Choose a style");
   return (

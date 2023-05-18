@@ -1,15 +1,19 @@
 import React from "react";
 
 export function DisplayTV() {
+  const loadingUrl =
+    "https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=acecdf5bd8wvit3kvkfoc1zgg2xi0h7g5hi51sl9j0w3m5yd&rid=giphy.gif&ct=g";
+
   const [channelArr, setChannelArr] = React.useState([
     {
       images: {
         original: {
-          url: "https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=acecdf5bd8wvit3kvkfoc1zgg2xi0h7g5hi51sl9j0w3m5yd&rid=giphy.gif&ct=g",
+          url: loadingUrl,
         },
       },
     },
   ]);
+
   const [channelIdx, setChannelIdx] = React.useState(0);
 
   const handleClick = () => {
@@ -25,6 +29,7 @@ export function DisplayTV() {
       .then((res) => res.json())
       .then((gifArr) => {
         setChannelArr(gifArr);
+        console.log("I fire once");
       });
   }, []);
 
