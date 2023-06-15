@@ -1,9 +1,9 @@
 import React from "react";
-import { DisplayArtwork, SelectStyle } from "./wallArt/wallArt.tsx";
-import { DisplayWeather } from "./weather/weather.tsx";
-import { SelectCity } from "./city/city.tsx";
-import { DisplayTime } from "./time/time.tsx";
-import { DisplayTV } from "./TV/tv.tsx";
+import { DisplayArtwork, SelectStyle } from "./wallArt/wallArt";
+import { DisplayWeather } from "./weather/weather";
+import { SelectCity } from "./city/city";
+import { DisplayTime } from "./time/time";
+import { DisplayTV } from "./TV/tv";
 import "./App.css";
 
 function App() {
