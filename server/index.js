@@ -144,3 +144,5 @@ app.get("/tv", async (req, res) => {
   let tvImages = await callGifApi();
   res.json(tvImages);
 });
+
+module.exports = app;
