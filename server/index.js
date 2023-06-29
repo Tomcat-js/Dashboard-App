@@ -145,4 +145,6 @@ app.get("/tv", async (req, res) => {
   res.json(tvImages);
 });
 
+app.use(express.static("../public"));
+
 module.exports = app;
